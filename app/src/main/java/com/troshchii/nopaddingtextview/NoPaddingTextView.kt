@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.TextView
 
 
@@ -17,6 +18,8 @@ class NoPaddingTextView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : TextView(context, attrs, defStyleAttr) {
+
+    private val tag = NoPaddingTextView::class.java.simpleName
 
     private val paint = Paint()
     private val bounds = Rect()
@@ -44,11 +47,18 @@ class NoPaddingTextView @JvmOverloads constructor(
         val left = bounds.left
         val bottom = bounds.bottom
 
+        Log.d(tag, "onDraw: x: $text, y: $bottom")
+
         bounds.offset(-bounds.left, -bounds.top)
 
         paint.isAntiAlias = true
         paint.color = currentTextColor
 
-        canvas.drawText(text, /* x= */(-left).toFloat(),/* y= */ (bounds.bottom - bottom).toFloat(), paint)
+        canvas.drawText(
+            text,
+            /* x= */(-left).toFloat(),
+            /* y= */ (bounds.bottom - bottom).toFloat(),
+            paint
+        )
     }
 }
