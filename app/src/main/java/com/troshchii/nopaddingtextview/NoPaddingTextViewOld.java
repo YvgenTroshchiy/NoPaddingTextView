@@ -31,15 +31,13 @@ public class NoPaddingTextViewOld extends android.support.v7.widget.AppCompatTex
         setIncludeFontPadding(false);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
+    @Override protected void onDraw(Canvas canvas) {
         int yOff = -mAdditionalPadding / 6;
         canvas.translate(0, yOff);
         super.onDraw(canvas);
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         getAdditionalPadding();
 
         int mode = MeasureSpec.getMode(heightMeasureSpec);
